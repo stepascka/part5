@@ -68,7 +68,8 @@ var main = function () {
 };
 
 
-$(document).ready(main);
-
-
-//window.alert("hello, world!");
+$(document).ready(function() {
+	$.getJSON("todos.json", function(toDoObjects) {
+		main(toDoObjects);
+	});
+});

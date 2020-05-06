@@ -80,6 +80,33 @@ var main = function () {
 					$tagInput.val("");
 				});
 			}
+			else if ($element.parent().is(":nth-child(5)")) {
+				var $inputLabel = $("<p>").text("Тэг: ");
+				$("main .content").append($inputLabel);
+				var $input = $("<input>").addClass("description");
+				$("main .content").append($input);	
+				var $button = $("<button>").text("Найти");
+				$("main .content").append($button);
+				$button.on("click", function () {
+					var tag = $input.val();
+					var displayPhoto = function(tag_, index_) {
+						var url = "http://api.flickr.com/services/feeds/photos_public.gne?" +
+									"tags=" + tag_ + "&format=json&jsoncallback=?";
+						$.getJSON(url, function(flickrResponse) {
+							var photo = flickrResponse.items[index_];
+							var $img = $("<img>").attr("src", photo.media.m).hide();
+							$(".photo").empty();				
+							$(".photo").append($img);
+							$img.fadeIn();
+						});	
+						setTimeout(function() {
+							index_ ++;
+							displayPhoto(tag, index_);
+						}, 2000);	
+					};	
+					displayPhoto(tag, 0);
+				});
+			}
 
 			return false;
 		});

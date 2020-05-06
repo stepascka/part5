@@ -81,21 +81,6 @@ var main = function () {
 				});
 			}
 
-//style
-			$("li").css({
-						"margin-top": "12px",
-						"color": "blue",
-						"font-weight": "bolder",
-						"margin-left": "3%"
-					});
-			$("input").css({
-						"margin-top": "7px",
-						"margin-bottom": "10px"
-					});
-			$("button").css({
-						"margin-left": "7px"
-					});
-
 			return false;
 		});
 	});
